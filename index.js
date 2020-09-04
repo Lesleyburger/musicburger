@@ -12,10 +12,10 @@ const youtube = new Youtube(process.env.GOOGLE_API_KEY)
 
 const queue = new Map()
 
-bot.on("ready", async () => {
+client.on("ready", async () => {
 
     console.log(`${bot.user.username} is online!`);
-    bot.user.setActivity("Your favorite music", {type: "PLAYING"});
+    client.user.setActivity("Your favorite music", {type: "PLAYING"});
 });
 
 client.on('message', async message => {
