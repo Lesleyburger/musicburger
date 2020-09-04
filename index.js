@@ -14,7 +14,7 @@ const queue = new Map()
 
 client.on("ready", async () => {
 
-    console.log(`${bot.user.username} is online!`);
+    console.log(`${client.user.username} is online!`);
     client.user.setActivity("Your favorite music", {type: "PLAYING"});
 });
 
