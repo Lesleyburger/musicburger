@@ -14,9 +14,9 @@ const queue = new Map()
 
 bot.on("ready", async () => {
 
-    client.on('ready', () => console.log('Active'))
-    bot.user.setActivity("Your favorite music", {type: "PLAYING"})
-})
+    console.log(`${bot.user.username} is online!`);
+    bot.user.setActivity("Your favorite music", {type: "PLAYING"});
+});
 
 client.on('message', async message => {
     if(message.author.bot) return
