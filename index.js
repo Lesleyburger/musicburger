@@ -14,6 +14,8 @@ const queue = new Map()
 
 client.on('ready', () => console.log('Active'))
 
+bot.user.setActivity("Your favorite music", {type: "PLAYING"})
+
 client.on('message', async message => {
     if(message.author.bot) return
     if(!message.content.startsWith(PREFIX)) return
