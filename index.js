@@ -46,7 +46,7 @@ client.on('message', async message => {
             .description("__**PLAYLIST ADDED**__")
             .addField("Playlist:" `**${playList.title}** has been added to the queue`)
             .addFiel("Song:" `${playList.link}`)
-            return undefined
+            return message.channel.send(botEmbed);
         } else {
             try {
                 var video = await youtube.getVideoByID(url)
@@ -58,7 +58,6 @@ client.on('message', async message => {
                     return message.channel.send("I couldn't find any search results")
                 }
             }
-            return message.channel.send(botEmbed);
             return handleVideo(video, message, voiceChannel)
         }
     } else if (message.content.startsWith(`${PREFIX}stop`)) {
