@@ -174,13 +174,15 @@ function play(guild, song) {
     })
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
 
+    var botIcon = bot.user.displayAvatarURL;
+
     var botEmbed = new discord.MessageEmbed()
     .setDescription("**SONG**")
     .setColor("#23ff00")
-    .addField("__**Playing in**__", `${message.channel}`)
     .addField("__**Song**__", `${song.title}`)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
+    .setThumbnail(botIcon);
 
     return serverQueue.textChannel.send(botEmbed)
 }
