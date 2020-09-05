@@ -174,7 +174,7 @@ function play(guild, song) {
     })
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
 
-    var botIcon = bot.user.displayAvatarURL;
+    var client = bot.user.displayAvatarURL;
 
     var botEmbed = new discord.MessageEmbed()
     .setDescription("**SONG**")
@@ -182,7 +182,7 @@ function play(guild, song) {
     .addField("__**Song**__", `${song.title}`)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
-    .setThumbnail(botIcon);
+    .setThumbnail(client);
 
     return serverQueue.textChannel.send(botEmbed)
 }
