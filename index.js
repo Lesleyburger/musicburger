@@ -84,13 +84,17 @@ client.on('message', async message => {
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
-        message.channel.send(`
-        __**Song Queue**__
-        ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
-        **[ Now Playing:]** 
-        ${serverQueue.songs[0].title}]
+        var botEmbed = new discord.RichEmbed()
+        .setDescription("**QUEUE**")
+        .setColor("#FF0000")
+        .setThumbnail(botIcon)
+        .addField("__**Song Queue**__", `
+        ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
+        .addField("**[ Now Playing:]**"
+        `${serverQueue.songs[0].title}]
         `, { split: true })
         return undefined
+        return message.channel.send(botEmbed);
     } else if (message.content.startsWith(`${PREFIX}pause`)) {
         if (!message.member.voice.channel)
           return message.channel.send("Please join voice channel first.");
