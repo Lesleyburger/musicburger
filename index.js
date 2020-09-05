@@ -42,11 +42,6 @@ client.on('message', async message => {
                 const video2 = await youtube.getVideoByID(video.id)
                 await handleVideo(video2, message, voiceChannel, true)
             }
-            var botEmbed = new discord.MessageEmbed()
-            .description("__**PLAYLIST ADDED**__")
-            .addField("Playlist:" `**${playList.title}** has been added to the queue`)
-            .addFiel("Song:" `${playList.link}`)
-            return message.channel.send(botEmbed);
         } else {
             try {
                 var video = await youtube.getVideoByID(url)
@@ -57,6 +52,11 @@ client.on('message', async message => {
                 } catch {
                     return message.channel.send("I couldn't find any search results")
                 }
+                var botEmbed = new discord.MessageEmbed()
+            .description("__**PLAYLIST ADDED**__")
+            .addField("Playlist:" `**${playList.title}** has been added to the queue`)
+            .addFiel("Song:" `${playList.link}`)
+            return message.channel.send(botEmbed);
             }
             return handleVideo(video, message, voiceChannel)
         }
