@@ -88,6 +88,7 @@ client.on('message', async message => {
         var botEmbed = new discord.MessageEmbed()
         .setDescription("**QUEUE**")
         .setColor("#FF0000")
+        .addField("__**Playing in**__", `${channel}`)
         .addField("__**Song Queue**__", `
         ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
         .addField("__**Now Playing:**__", `${serverQueue.songs[0].title}]`, { split: true })
@@ -175,7 +176,10 @@ function play(guild, song) {
     var botEmbed = new discord.MessageEmbed()
     .setDescription("**SONG**")
     .setColor("#23ff00")
-    .addField("__**Song**__", `Started playing: **${song.title}**`)
+    .addField("__**Playing in**__", `${channel}`)
+    .addField("__**Song**__", `${song.title}`)
+    .addField("__**Added by:**__", `${member.user}`)
+    .setTimestamp()
 
     return serverQueue.textChannel.send(botEmbed)
 }
