@@ -42,6 +42,7 @@ client.on('message', async message => {
                 const video2 = await youtube.getVideoByID(video.id)
                 await handleVideo(video2, message, voiceChannel, true)
             }
+            return undefined
         } else {
             try {
                 var video = await youtube.getVideoByID(url)
