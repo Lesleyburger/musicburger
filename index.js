@@ -56,7 +56,6 @@ client.on('message', async message => {
             }
             return handleVideo(video, message, voiceChannel)
         }
-        return undefined
     } else if (message.content.startsWith(`${PREFIX}stop`)) {
         if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to stop the music")
         if(!serverQueue) return message.channel.send("There is nothing playing")
