@@ -178,6 +178,7 @@ function play(guild, song) {
     .setDescription("**SONG**")
     .setColor("#23ff00")
     .addField("__**Song**__", `${song.title}`)
+    .addField("__**Playing in**__", `${VoiceConnection}`)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
 
