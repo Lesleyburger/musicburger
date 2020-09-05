@@ -5,6 +5,7 @@ const ytdl = require('ytdl-core')
 const Youtube = require('simple-youtube-api')
 const { getURLVideoID } = require('ytdl-core')
 const PREFIX = '*'
+const discord = require ('discord.js')
 
 const client = new Client({ disableEveryone: true })
 
