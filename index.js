@@ -160,12 +160,6 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
 function play(guild, song) {
     const serverQueue = queue.get(guild.id)
 
-    if(!song) {
-        serverQueue.voiceChannel.leave()
-        queue.delete(guild.id)
-        return
-    }
-
     const dispatcher = serverQueue.connection.play(ytdl(song.url))
     .on('finish', () => {
         serverQueue.songs.shift()
