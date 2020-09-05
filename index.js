@@ -39,7 +39,7 @@ client.on('message', async message => {
         if(url.match(/https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
             const playlist = await youtube.getPlaylist(url)
             const videos = await playlist.getVideos()
-            for (const video of Object.values(video)) {
+            for (const video of Object.values(videos)) {
                 const video2 = await youtube.getVideoByID(video.id)
                 await handleVideo(video2, message, voiceChannel, true)
             }
@@ -177,7 +177,7 @@ function play(guild, song) {
     var botEmbed = new discord.MessageEmbed()
     .setDescription("**SONG**")
     .setColor("#23ff00")
-    .addField("__**Playing in**__", `${voiceChannel}`)
+    .addField("__**Playing in**__", `${message.channel}`)
     .addField("__**Song**__", `${song.title}`)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
