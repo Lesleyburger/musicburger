@@ -3,7 +3,7 @@ const {
   } = require('discord.js')
   const ytdl = require('ytdl-core')
   const Discord = require('discord.js')
-  const youtube = require('simple-youtube-api')
+  const Youtube = require('simple-youtube-api')
   const prefix = 'm.'
   
   const client = new Client({
