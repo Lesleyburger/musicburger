@@ -88,7 +88,6 @@ client.on('message', async message => {
         var botEmbed = new discord.MessageEmbed()
         .setDescription("**QUEUE**")
         .setColor("#FF0000")
-        .setThumbnail(botIcon)
         .addField("__**Song Queue**__", `
         ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
         .addField("**[ Now Playing:]**"
