@@ -90,9 +90,7 @@ client.on('message', async message => {
         .setColor("#FF0000")
         .addField("__**Song Queue**__", `
         ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
-        .addField("**[ Now Playing:]**"
-        `${serverQueue.songs[0].title}]
-        `, { split: true })
+        .addField("__**Now Playing:**__", `${serverQueue.songs[0].title}]`, { split: true })
         return message.channel.send(botEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}pause`)) {
