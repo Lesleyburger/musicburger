@@ -8,7 +8,7 @@ const { Client } = require('discord.js')
     disableEveryone: true
   })
   
-  const YouTube = new YouTube(process.env.GOOGLE_API_KEY)
+  const youtube = new YouTube(process.env.GOOGLE_API_KEY)
   
   const queue = new Map()
   
