@@ -4,7 +4,8 @@ const { Client, Util } = require ('discord.js')
 const discord = require('discord.js');
 const ytdl = require('ytdl-core')
 const Youtube = require('simple-youtube-api')
-const { getURLVideoID } = require('ytdl-core')
+const { getURLVideoID } = require('ytdl-core');
+const { Channel } = require('simple-youtube-api');
 const PREFIX = '*'
 
 const client = new Client({ disableEveryone: true })
@@ -176,7 +177,7 @@ function play(guild, song) {
     var botEmbed = new discord.MessageEmbed()
     .setDescription("**SONG**")
     .setColor("#23ff00")
-    .addField("__**Playing in**__", `${messageChannel}`)
+    .addField("__**Playing in**__", `${voiceChannel}`)
     .addField("__**Song**__", `${song.title}`)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
