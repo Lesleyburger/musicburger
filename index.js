@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const { Client, Util } = require ('discord.js')
+const discord = require('discord.js');
 const ytdl = require('ytdl-core')
 const Youtube = require('simple-youtube-api')
 const { getURLVideoID } = require('ytdl-core')
@@ -84,7 +85,7 @@ client.on('message', async message => {
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
-        var botEmbed = new discord.RichEmbed()
+        var botEmbed = new discord.MessageEmbed()
         .setDescription("**QUEUE**")
         .setColor("#FF0000")
         .setThumbnail(botIcon)
@@ -93,8 +94,8 @@ client.on('message', async message => {
         .addField("**[ Now Playing:]**"
         `${serverQueue.songs[0].title}]
         `, { split: true })
-        return undefined
         return message.channel.send(botEmbed);
+        return undefined
     } else if (message.content.startsWith(`${PREFIX}pause`)) {
         if (!message.member.voice.channel)
           return message.channel.send("Please join voice channel first.");
