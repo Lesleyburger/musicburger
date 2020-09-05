@@ -42,7 +42,11 @@ client.on('message', async message => {
                 const video2 = await youtube.getVideoByID(video.id)
                 await handleVideo(video2, message, voiceChannel, true)
             }
-            message.channel.send(`Playlist: **${playList.title}** has been added to the queue`)
+            var botEmbed = new discord.MessageEmbed()
+            .description("__**PLAYLIST ADDED**__")
+            .addField("Playlist:" `**${playList.title}** has been added to the queue`)
+            .addFiel("Song:" `${playlist.link}`)
+            return message.channel.send(botEmbed);
             return undefined
         } else {
             try {
