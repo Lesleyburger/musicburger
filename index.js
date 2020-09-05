@@ -97,7 +97,7 @@ client.on('message', async message => {
         if(!serverQueue) return message.channel.send("There is nothing playing")
         if(!serverQueue.playing) return message.channel.send("The music is already paused")
         serverQueue.playing = false
-        serverQueue.connectoin.dispatcher.pause()
+        serverQueue.connection.dispatcher.pause()
         message.channel.send("I have now paused the music for you")
         return undefined
     } else if (message.content.startsWith(`${PREFIX}resume`)) {
