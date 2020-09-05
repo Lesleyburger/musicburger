@@ -109,7 +109,6 @@ client.on('message', async message => {
         message.channel.send("I have now resumed the music for you")
         return undefined
     }
-    return undefined
 })
 
 async function handleVideo(video, message, voiceChannel, playList = false) {
