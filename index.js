@@ -118,8 +118,24 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.resume();
         return message.channel.send("I have resumed the music.");
         return undefined
+    } else if (message.content.startsWith(`${PREFIX}avatar`)) 
+    {
+        if (!message.mentions.users.size) {
+          const avatarAuthor = new discord.RichEmbed()
+        .setColor(0x333333)
+        .setAuthor(message.author.username)
+        .setImage(message.author.avatarURL)
+          message.channel.send(avatarAuthor);
+          let mention = message.mentions.members.first();
+          const avatarMention = new discord.RichEmbed()
+          .setColor(0x333333)
+          .setAuthor(mention.user.username)
+          .setImage(mention.user.avatarURL)
+          message.channel.send(avatarMention);
+          return undefined
+        }
     }
-    return undefined
+        return undefined
 })
 
 async function handleVideo(video, message, voiceChannel, playList = false) {
