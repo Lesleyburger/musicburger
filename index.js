@@ -4,9 +4,7 @@ const { Client } = require('discord.js')
   const YouTube = require('simple-youtube-api')
   const prefix = '*'
   
-  const client = new Client({
-    disableEveryone: true
-  })
+  const client = new Client({ disableEveryone: true })
   
   const youtube = new YouTube(process.env.GOOGLE_API_KEY)
   
