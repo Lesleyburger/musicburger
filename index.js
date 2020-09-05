@@ -176,7 +176,7 @@ function play(guild, song) {
     var botEmbed = new discord.MessageEmbed()
     .setDescription("**SONG**")
     .setColor("#23ff00")
-    .addField("__**Playing in**__", `${channel}`)
+    .addField("__**Playing in**__", `${messageChannel}`)
     .addField("__**Song**__", `${song.title}`)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
