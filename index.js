@@ -41,7 +41,7 @@ client.on('message', async message => {
                 const video2 = await youtube.getVideoByID(video.id)
                 await handleVideo(video2, message, voiceChannel, true)
             }
-            message.cchannel.send(`Playlist: **${playList.title}** has been added to the queue`)
+            message.channel.send(`Playlist: **${playList.title}** has been added to the queue`)
             return undefined
         } else {
             try {
@@ -99,13 +99,17 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.pause()
         message.channel.send("I have now paused the music for you")
         return undefined
-    } else if (message.content.startsWith(`${PREFIX}resume`)) {
-        if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to use the resume command")
-        if(!serverQueue) return message.channel.send("There is nothing playing")
-        if(serverQueue) return message.channel.send("The music is already playing")
-        serverQueue.playing = true
-        serverQueue.connection.dispatcher.resume()
-        message.channel.send("I have now resumed the music for you")
+    } else if (message.content.startsWith(prefix + "resume")) {
+            if (!message.member.voice.channel)
+              return message.channel.send("Please join voice channel first.");
+            if (!message.member.hasPermission("ADMINISTRATOR"))
+              return message.channel.send("Only adiminstarators can resume music.");
+            if (!serverQueue) return message.channel.send("There is nothing playing.");
+            if (serverQueue.playing)
+              return message.channel.send("The music is already playing.");
+            serverQueue.playing = true;
+            serverQueue.connection.dispatcher.resume();
+            return message.channel.send("I have resumed the music.");
         return undefined
     }
     return undefined
