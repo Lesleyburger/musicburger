@@ -45,7 +45,7 @@ client.on('message', async message => {
             var botEmbed = new discord.MessageEmbed()
             .description("__**PLAYLIST ADDED**__")
             .addField("Playlist:" `**${playList.title}** has been added to the queue`)
-            .addFiel("Song:" `${playlist.link}`)
+            .addFiel("Song:" `${playList.link}`)
             return message.channel.send(botEmbed);
             return undefined
         } else {
