@@ -84,7 +84,6 @@ client.on('message', async message => {
         message.channel.send(`Now playing: **${serverQueue.songs[0].title}**`)
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
-        if(!serverQueue) return message.channel.send("There is nothing playing")
         var botEmbed = new discord.MessageEmbed()
         .setDescription("**QUEUE**")
         .setColor("#FF0000")
@@ -105,8 +104,6 @@ client.on('message', async message => {
     } else if (message.content.startsWith(prefix + "resume")) {
             if (!message.member.voice.channel)
               return message.channel.send("Please join voice channel first.");
-            if (!message.member.hasPermission("ADMINISTRATOR"))
-              return message.channel.send("Only adiminstarators can resume music.");
             if (!serverQueue) return message.channel.send("There is nothing playing.");
             if (serverQueue.playing)
               return message.channel.send("The music is already playing.");
