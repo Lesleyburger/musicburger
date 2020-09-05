@@ -45,15 +45,16 @@ client.on('message', async message => {
             return undefined
         } else {
             try {
-                var video = await youtube.getVideoByID(url)
-            } catch {
+                var video = await youtube.getVideoByID(url);
+              } catch {
                 try {
-                    var videos = await youtube.searchVideos(searchString, 1)
-                    var video = await youtube.getVideoByID(videos[0].id)
-                } catch {
-                    return message.channel.send("I couldn't find any search results")
+                  var videos = await youtube.searchVideos(searchString, 1);
+                  var video = await youtube.getVideoByID(videos[0].id);
+                } catch (error) {
+                  console.log(error);
+                  return message.channel.send("I couln't find song with that title.");
                 }
-            }
+              }
             return handleVideo(video, message, voiceChannel)
         }
     } else if (message.content.startsWith(`${PREFIX}stop`)) {
