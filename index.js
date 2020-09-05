@@ -180,7 +180,6 @@ function play(guild, song) {
     .addField("__**Song**__", `${song.title}`)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
-    .setThumbnail("https://imgur.com/HK7qZQV");
 
     return serverQueue.textChannel.send(botEmbed)
 }
