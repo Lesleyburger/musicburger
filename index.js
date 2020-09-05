@@ -47,13 +47,14 @@ client.on('message', async message => {
             return undefined
         } else {
             try {
-                var video = await youtube.getVideoByID(url)
-            } catch {
+                var video = await youtube.getVideoByID(url);
+              } catch {
                 try {
-                    var videos = await youtube.searchVideos(searchString, 1)
-                    var video = await youtube.getVideoByID(videos[0].id)
-                } catch {
-                    return message.channel.send("I couldn't find any search results")
+                  var videos = await youtube.searchVideos(searchString, 1);
+                  var video = await youtube.getVideoByID(videos[0].id);
+                } catch (error) {
+                  console.log(error);
+                  return message.channel.send("I couln't find song with that title.");
                 }
             }
             return handleVideo(video, message, voiceChannel)
@@ -118,22 +119,6 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.resume();
         return message.channel.send("I have resumed the music.");
         return undefined
-    } else if (message.content.startsWith(`${PREFIX}avatar`)) 
-    {
-        if (!message.mentions.users.size) {
-          const avatarAuthor = new discord.RichEmbed()
-        .setColor(0x333333)
-        .setAuthor(message.author.username)
-        .setImage(message.author.avatarURL)
-          message.channel.send(avatarAuthor);
-          let mention = message.mentions.members.first();
-          const avatarMention = new discord.RichEmbed()
-          .setColor(0x333333)
-          .setAuthor(mention.user.username)
-          .setImage(mention.user.avatarURL)
-          message.channel.send(avatarMention);
-          return undefined
-        }
     }
         return undefined
 })
