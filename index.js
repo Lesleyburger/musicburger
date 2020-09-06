@@ -112,7 +112,7 @@ client.on('message', async message => {
         .addField("__**Now Playing:**__", `${serverQueue.songs[0].title}`, { split: true })
         return message.channel.send(botEmbed);
         return undefined
-    } else if (message.content.startsWith(prefix + "pause")) {
+    } else if (message.content.startsWith(`${PREFIX}pause`)) {
         if (!message.member.voice.channel)
           return message.channel.send("Please join voice channel first.");
         if (!message.member.hasPermission("ADMINISTRATOR"))
@@ -124,7 +124,7 @@ client.on('message', async message => {
         .addField("__**Your song has been paused**__" `${song.title}` )
         return message.channel.send(pauseEmbed);
         return undefined
-    } else if (message.content.startsWith(prefix + "resume")) {
+    } else if (message.content.startsWith(`${PREFIX}pause`)) {
             if (!message.member.voice.channel)
               return message.channel.send("Please join voice channel first.");
             if (!message.member.hasPermission("ADMINISTRATOR"))
