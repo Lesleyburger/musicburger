@@ -85,12 +85,12 @@ client.on('message', async message => {
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
-        message.channel.send(`
-        __**Song Queue**__
-        ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
-        **[ Now Playing:]** 
-        ${serverQueue.songs[0].title}]
-        `, { split: true })
+        var botEmbed = new discord.RichEmbed()
+        .setDescription("__**QUEUE SONGS**__")
+        .setColor("RANDOM")
+        .addField(" __**Song Queue**__", `${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
+        .addField("__**Now Playing:** __", `${serverQueue.songs[0].title}`, { split: true })
+        return message.channel.send(botEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}pause`)) {
         if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to use the pause command")
