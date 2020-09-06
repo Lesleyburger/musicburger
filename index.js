@@ -181,7 +181,7 @@ function play(guild, song) {
     .setDescription("**SONG**")
     .setColor("#23ff00")
     .addField("__**Song**__", `${song.title}`)
-    .addField("__**Song**__", `<@${targetMember.user.id}>`)
+    .addField("__**Song**__", `<@${user}>`)
     .setTimestamp()
 
     return serverQueue.textChannel.send(playingEmbed)
