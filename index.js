@@ -177,7 +177,14 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
     } else {
         serverQueue.songs.push(song)
         if(playList) return undefined
-        else return message.channel.send(`**${song.title}** has been added to the queue`)
+        else {
+        var playlistEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("__**Song added**__", `${playList.title}** has been added to the queue`)
+        .setTimestamp()
+
+        return message.channel.send(playlistEmbed)
+        }
     }
     return undefined
 }
