@@ -181,7 +181,6 @@ function play(guild, song) {
     .setDescription("**SONG**")
     .setColor("#23ff00")
     .addField("__**Song**__", `${song.title}`)
-    .addField("__**Playing in**__", message.guild.member(client.user).voice.channel)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
 
