@@ -42,7 +42,12 @@ client.on('message', async message => {
                 const video2 = await youtube.getVideoByID(video.id)
                 await handleVideo(video2, message, voiceChannel, true)
             }
-            message.channel.send(`Playlist: **${playList.title}** has been added to the queue`)
+            var playlistEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("__**Song added**__", `${playList.title}** has been added to the queue`)
+        .setTimestamp()
+
+        return message.channel.send(playlistEmbed)
             return undefined
         } else {
             try {
@@ -74,7 +79,7 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.end()
         var skipEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**YOU SKIPPED THIS SONG:**__" `${song.title}` )
+        .addField("__**You skipped the song:**__" `${song.title}` )
         return message.channel.send(skipEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}volume`)) {
@@ -86,20 +91,20 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5) 
         var volumeEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**THE VOLUME GOT CHANGED TO:**__" `**${args[1]}**`)
+        .addField("__**The volume got changed to:**__" `**${args[1]}**`)
         return message.channel.send(volumeEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}np`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
         var npEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**NOW PLAYING:**__" `${serverQueue.songs[0].title}` )
+        .addField("__**Now playing:**__" `${serverQueue.songs[0].title}` )
         return message.channel.send(npEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
         var botEmbed = new discord.MessageEmbed()
-        .setDescription("__**QUEUED SONGS**__")
+        .setDescription("__**Queued songs**__")
         .setColor("RANDOM")
         .addField("__**Playing in**__", message.guild.member(client.user).voice.channel)
         .addField("__**Song Queue**__", `
@@ -116,7 +121,7 @@ client.on('message', async message => {
         if (!serverQueue.playing)
         var pauseEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**YOUR SONG HAS BEEN PAUSED**__" `${song.title}` )
+        .addField("__**Your song has been paused**__" `${song.title}` )
         return message.channel.send(pauseEmbed);
         return undefined
     } else if (message.content.startsWith(prefix + "resume")) {
@@ -131,7 +136,7 @@ client.on('message', async message => {
             serverQueue.connection.dispatcher.resume();
             var resumeEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("YOUR SONG HAS BEEN RESUMED" `${song.title}` )
+        .addField("__**Your song has been resumed**__" `${song.title}` )
         return message.channel.send(resumeEmbed);
         return undefined
     }
