@@ -124,16 +124,16 @@ client.on('message', async message => {
         .addField("__**Your song has been paused**__" `${song.title}` )
         return message.channel.send(pauseEmbed);
         return undefined
-    } else if (message.content.startsWith(`${PREFIX}pause`)) {
-            if (!message.member.voice.channel)
-              return message.channel.send("Please join voice channel first.");
-            if (!message.member.hasPermission("ADMINISTRATOR"))
-              return message.channel.send("Only adiminstarators can resume music.");
-            if (!serverQueue) return message.channel.send("There is nothing playing.");
-            if (serverQueue.playing)
-              return message.channel.send("The music is already playing.");
-            serverQueue.playing = true;
-            serverQueue.connection.dispatcher.resume();
+    } else if (message.content.startsWith(`${PREFIX}resume`)) {
+        if (!message.member.voice.channel)
+          return message.channel.send("Please join voice channel first.");
+        if (!message.member.hasPermission("ADMINISTRATOR"))
+          return message.channel.send("Only adiminstarators can resume music.");
+        if (!serverQueue) return message.channel.send("There is nothing playing.");
+        if (serverQueue.playing)
+          return message.channel.send("The music is already playing.");
+        serverQueue.playing = true;
+        serverQueue.connection.dispatcher.resume();
             var resumeEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
         .addField("__**Your song has been resumed**__" `${song.title}` )
