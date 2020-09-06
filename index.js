@@ -104,7 +104,6 @@ client.on('message', async message => {
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
         var botEmbed = new discord.MessageEmbed()
-        .setDescription("__**Queued songs**__")
         .setColor("RANDOM")
         .addField("__**Playing in**__", message.guild.member(client.user).voice.channel)
         .addField("__**Song Queue**__", `
