@@ -117,7 +117,8 @@ client.on('message', async message => {
         if (!message.member.hasPermission("ADMINISTRATOR"))
           return message.channel.send("Only adiminstarators can pause music.");
         if (!serverQueue) return message.channel.send("There is nothing playing.");
-        if (!serverQueue.playing)
+        serverQueue.playing = false
+        serverQueue.connection.dispatcher.pause()
         var pauseEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
         .addField("__**Your song has been paused**__" `${song.title}` )
