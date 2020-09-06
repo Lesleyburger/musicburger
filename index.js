@@ -63,13 +63,19 @@ client.on('message', async message => {
         if(!serverQueue) return message.channel.send("There is nothing playing")
         serverQueue.songs = []
         serverQueue.connection.dispatcher.end()
-        message.channel.send("I have stopped the music for you")
+        var stopEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("__**I HAVE STOPPED THE MUSIC FOR YOU**__" `${song.title}` )
+        return message.channel.send(stopEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}skip`)) {
         if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to skip the music")
         if(!serverQueue) return message.channel.send("There is nothing playing")
         serverQueue.connection.dispatcher.end()
-        message.channel.send("**skipped**")
+        var skipEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("__**YOU SKIPPED THIS SONG:**__" `${song.title}` )
+        return message.channel.send(skipEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}volume`)) {
         if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to use music commands")
@@ -78,11 +84,17 @@ client.on('message', async message => {
         if(isNaN(args[1])) return message.channel.send("That is not a valid amount to change the volume")
         serverQueue.volume = args[1]
         serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5) 
-        message.channel.send(`I have changed the volume to: **${args[1]}**`)
+        var volumeEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("__**THE VOLUME GOT CHANGED TO:**__" `**${args[1]}**`)
+        return message.channel.send(volumeEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}np`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
-        message.channel.send(`Now playing: **${serverQueue.songs[0].title}**`)
+        var npEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("__**NOW PLAYING:**__" `${serverQueue.songs[0].title}` )
+        return message.channel.send(npEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
@@ -92,7 +104,7 @@ client.on('message', async message => {
         .addField("__**Playing in**__", message.guild.member(client.user).voice.channel)
         .addField("__**Song Queue**__", `
         ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
-        .addField("__**Now Playing:**__", `${serverQueue.songs[0].title}]`, { split: true })
+        .addField("__**Now Playing:**__", `${serverQueue.songs[0].title}`, { split: true })
         return message.channel.send(botEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}pause`)) {
@@ -101,7 +113,10 @@ client.on('message', async message => {
         if(!serverQueue.playing) return message.channel.send("The music is already paused")
         serverQueue.playing = false
         serverQueue.connection.dispatcher.pause()
-        message.channel.send("I have now paused the music for you")
+        var pauseEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("__**YOUR SONG HAS BEEN PAUSED**__" `${song.title}` )
+        return message.channel.send(pauseEmbed);
         return undefined
     } else if (message.content.startsWith(prefix + "resume")) {
             if (!message.member.voice.channel)
@@ -113,7 +128,10 @@ client.on('message', async message => {
               return message.channel.send("The music is already playing.");
             serverQueue.playing = true;
             serverQueue.connection.dispatcher.resume();
-            return message.channel.send("I have resumed the music.");
+            var resumeEmbed = new discord.MessageEmbed()
+        .setColor("RANDOM")
+        .addField("YOUR SONG HAS BEEN RESUMED" `${song.title}` )
+        return message.channel.send(resumeEmbed);
         return undefined
     }
     return undefined
