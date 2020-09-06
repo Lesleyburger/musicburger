@@ -177,13 +177,11 @@ function play(guild, song) {
     })
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
 
-    serverQueue.textChannel.send(`Start Playing: **${song.title}**`)
-
     var botEmbed = new discord.MessageEmbed()
     .setDescription("**SONG**")
     .setColor("#23ff00")
     .addField("__**Song**__", `${song.title}`)
-    .addField("__**Playing in**__", `${VoiceConnection}`)
+    .addField("__**Playing in**__", message.guild.member(client.user).voice.channel)
     .addField("__**Added by:**__", `${member.user}`)
     .setTimestamp()
 
