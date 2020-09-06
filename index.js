@@ -178,12 +178,12 @@ async function handleVideo(video, message, voiceChannel, playList = false) {
         serverQueue.songs.push(song)
         if(playList) return undefined
         else {
-        var playlistEmbed = new discord.MessageEmbed()
+        var queueaddEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**Song added**__", `${playList.title}** has been added to the queue`)
+        .addField("__**Song added to the queue**__", `${song.title}`)
         .setTimestamp()
 
-        return message.channel.send(playlistEmbed)
+        return message.channel.send(queueaddEmbed)
         }
     }
     return undefined
