@@ -79,7 +79,7 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.end()
         var skipEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField(`__**you've skipped the song:**__ \n ${song.title}`)
+        .addField(`__**you've skipped the song:**__ \n ${serverQueue.songs[0].title}`)
         return message.channel.send(skipEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}volume`)) {
