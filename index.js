@@ -210,7 +210,7 @@ function play(guild, song) {
 
     var playingEmbed = new discord.MessageEmbed()
     .setColor("RANDOM")
-    .addField("__**Song added**__", `${song.title}`)
+    .addField("__**Playing now**__", `${song.title}`)
     .setTimestamp()
 
     return serverQueue.textChannel.send(playingEmbed)
