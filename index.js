@@ -86,10 +86,12 @@ client.on('message', async message => {
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
         var botEmbed = new discord.MessageEmbed()
-        .setDescription("__**QUEUE SONGS**__")
-        .setColor("RANDOM")
-        .addField(" __**Song Queue**__", `${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
-        .addField("__**Now Playing:** __", `${serverQueue.songs[0].title}`, { split: true })
+        .setDescription("**QUEUE**")
+        .setColor("#FF0000")
+        .addField("__**Playing in**__", message.guild.member(client.user).voice.channel)
+        .addField("__**Song Queue**__", `
+        ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
+        .addField("__**Now Playing:**__", `${serverQueue.songs[0].title}]`, { split: true })
         return message.channel.send(botEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}pause`)) {
