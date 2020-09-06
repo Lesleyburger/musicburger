@@ -44,7 +44,7 @@ client.on('message', async message => {
             }
             var playlistEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**Song added**__", `${playList.title}** has been added to the queue`)
+        .addField("__**Song added**__", `${song.title}** has been added to the queue`)
         .setTimestamp()
 
         return message.channel.send(playlistEmbed)
