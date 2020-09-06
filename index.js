@@ -85,7 +85,7 @@ client.on('message', async message => {
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
         if(!serverQueue) return message.channel.send("There is nothing playing")
-        var botEmbed = new discord.RichEmbed()
+        var botEmbed = new discord.MessageEmbed()
         .setDescription("__**QUEUE SONGS**__")
         .setColor("RANDOM")
         .addField(" __**Song Queue**__", `${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
