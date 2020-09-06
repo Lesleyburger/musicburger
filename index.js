@@ -95,10 +95,10 @@ client.on('message', async message => {
         return message.channel.send(volumeEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}np`)) {
-        if(!serverQueue) return message.channel.send("There is nothing playing")
+        if (!serverQueue) return message.channel.send("There is nothing playing.");
         var npEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**Now playing:**__" `${serverQueue.songs[0].title}` )
+        .addField(`__**Now playing:**__ \n ${serverQueue.songs[0].title}`)
         return message.channel.send(npEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
