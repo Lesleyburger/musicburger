@@ -69,8 +69,8 @@ client.on('message', async message => {
         serverQueue.songs = []
         serverQueue.connection.dispatcher.end()
         var stopEmbed = new discord.MessageEmbed()
-        .setColor("RANDOM")
-        .addField("__**I HAVE STOPPED THE MUSIC FOR YOU**__" `${song.title}` )
+        .setColor("#FF0000")
+        .setDescription(`__**You've stopped the music**__`)
         return message.channel.send(stopEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}skip`)) {
@@ -79,7 +79,7 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.end()
         var skipEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**You skipped the song:**__" `${song.title}` )
+        .setDescription(`__**you've skipped the song:**__ \n ${song.title}`)
         return message.channel.send(skipEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}volume`)) {
@@ -91,14 +91,14 @@ client.on('message', async message => {
         serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5) 
         var volumeEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField("__**The volume got changed to:**__" `**${args[1]}**`)
+        .setDescription(`__**Volume has been sert to:**__ \n ${args[1]}`)
         return message.channel.send(volumeEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}np`)) {
         if (!serverQueue) return message.channel.send("There is nothing playing.");
         var npEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
-        .addField(`__**Now playing:**__ \n ${serverQueue.songs[0].title}`)
+        .setDescription(`__**Now playing:**__ \n ${serverQueue.songs[0].title}`)
         return message.channel.send(npEmbed);
         return undefined
     } else if (message.content.startsWith(`${PREFIX}queue`)) {
