@@ -29,13 +29,6 @@ client.on('message', async message => {
     const serverQueue = queue.get(message.guild.id)
 
     if(message.content.startsWith(`${PREFIX}play`)) {
-        var botEmbed = new discord.MessageEmbed()
-    .setDescription("**SONG**")
-    .setColor("#23ff00")
-    .addField("__**Song**__", `${song.title}`)
-    .addField("__**Playing in**__", `${VoiceConnection}`)
-    .addField("__**Added by:**__", `${member.user}`)
-    .setTimestamp()
         const voiceChannel = message.member.voice.channel
         if(!voiceChannel) return message.channel.send("you need to be in a voice channel to play music")
         const permissions = voiceChannel.permissionsFor(message.client.user)
@@ -185,6 +178,16 @@ function play(guild, song) {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
 
     serverQueue.textChannel.send(`Start Playing: **${song.title}**`)
+
+    var botEmbed = new discord.MessageEmbed()
+    .setDescription("**SONG**")
+    .setColor("#23ff00")
+    .addField("__**Song**__", `${song.title}`)
+    .addField("__**Playing in**__", `${VoiceConnection}`)
+    .addField("__**Added by:**__", `${member.user}`)
+    .setTimestamp()
+
+    return serverQueue.textChannel.send(botEmbed)
 
 }
 
