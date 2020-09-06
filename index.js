@@ -107,12 +107,13 @@ client.on('message', async message => {
         .addField("__**Now Playing:**__", `${serverQueue.songs[0].title}`, { split: true })
         return message.channel.send(botEmbed);
         return undefined
-    } else if (message.content.startsWith(`${PREFIX}pause`)) {
-        if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to use the pause command")
-        if(!serverQueue) return message.channel.send("There is nothing playing")
-        if(!serverQueue.playing) return message.channel.send("The music is already paused")
-        serverQueue.playing = false
-        serverQueue.connection.dispatcher.pause()
+    } else if (message.content.startsWith(prefix + "pause")) {
+        if (!message.member.voice.channel)
+          return message.channel.send("Please join voice channel first.");
+        if (!message.member.hasPermission("ADMINISTRATOR"))
+          return message.channel.send("Only adiminstarators can pause music.");
+        if (!serverQueue) return message.channel.send("There is nothing playing.");
+        if (!serverQueue.playing)
         var pauseEmbed = new discord.MessageEmbed()
         .setColor("RANDOM")
         .addField("__**YOUR SONG HAS BEEN PAUSED**__" `${song.title}` )
