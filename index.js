@@ -178,9 +178,8 @@ function play(guild, song) {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
 
     var playingEmbed = new discord.MessageEmbed()
-    .setDescription("**SONG**")
-    .setColor("#23ff00")
-    .addField("__**Song**__", `${song.title}`)
+    .setColor("RANDOM")
+    .addField("__**Song added**__", `${song.title}`)
     .setTimestamp()
 
     return serverQueue.textChannel.send(playingEmbed)
